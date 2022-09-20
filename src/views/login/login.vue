@@ -24,6 +24,8 @@
     </div>
 </template>
 <script>
+import { LoaderTargetPlugin } from 'webpack';
+
 export default {
 
     data() {
@@ -46,7 +48,13 @@ export default {
 
     methods: {
        async submit(){
-            
+           let res = await login({username:this.username,password:this.password})
+           if(res.data.msg=='ok'){
+            setTimeout(()=>{
+                this.$router.push({path:'/'})
+            },1000)
+
+           }
         }
     }
 };
