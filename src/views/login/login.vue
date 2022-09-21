@@ -6,13 +6,13 @@
             </div>
            
             <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">                
-                    <el-form-item label="账号" prop="name">
-                        <el-input type="username" >
+                    <el-form-item label="账号" prop="username">
+                        <el-input  v-model.trim="ruleForm.username" >
                         </el-input>
                     </el-form-item>
                     
                     <el-form-item label="密码" prop="password">
-                        <el-input type="password">
+                        <el-input v-model.trim="ruleForm.password">
                         </el-input>
                     </el-form-item>
                 </el-form>
@@ -24,35 +24,36 @@
     </div>
 </template>
 <script>
-import { LoaderTargetPlugin } from 'webpack';
-
 export default {
-
     data() {
         return {
             // ruleForm:{
             //     name: '',
             //     password:''
             // },
-            form:{
+            ruleForm:{
                 username:'',
                 password:''
             },
             rules: {
-                username: [{ required: true, message: 'Username', trigger: 'blur' }],
-                password: [{ required: true, message: 'Password', trigger: 'blur' }]
+                username: [{ required: true, message: '账号不能为空', trigger: 'blur' },
+                           {min:3,max:12,message:'请输入3~12个字符',trigger:'blur'}
+            ],
+                password: [{ required: true, message: '密码不能为空', trigger: 'blur' },
+            ]
             }
 
         }
     },
 
     methods: {
+        //点击登录对整个表单效验
+        
        async submit(){
            let res = await login({username:this.username,password:this.password})
            if(res.data.msg=='ok'){
-            setTimeout(()=>{
+           
                 this.$router.push({path:'/'})
-            },1000)
 
            }
         }

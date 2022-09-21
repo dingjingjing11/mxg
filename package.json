@@ -11,6 +11,7 @@
     "axios": "^0.27.2",
     "core-js": "^3.8.3",
     "element-ui": "^2.15.10",
+    "mockjs": "^1.1.0",
     "normalize.css": "^8.0.1",
     "sass": "^1.54.9",
     "sass-loader": "^12.0.0",
@@ -30,6 +31,11 @@
     "eslint-plugin-vue": "^8.0.3",
     "vue-template-compiler": "^2.6.14"
   },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-customizable"
+    }
+  },
   "eslintConfig": {
     "root": true,
     "env": {
@@ -48,11 +54,6 @@
     "> 1%",
     "last 2 versions",
     "not dead"
-  ],
-  "config": {
-    "commitizen": {
-      "path": "node_modules/cz-customizable"
-    }
-  }
-
+  ]
+  
 }

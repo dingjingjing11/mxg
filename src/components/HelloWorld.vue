@@ -31,11 +31,72 @@
 </template>
 
 <script>
+ import TestApi  from "@/api/test"
+import { response } from "express";
+
 export default {
   name: 'HelloWorld',
   props: {
     msg: String
+  },
+  data(){
+    return{
+      page:1,
+      size:10
+    }
+  },
+  created(){
+    this.getMemberList,
+    this.getSupplierList,
+    this.findMember  
+
+    // request({
+    //   url:"process.env.VUE_APP_BASE_API+ "/"",
+    //   method:'GET'
+    // }).then(response=>{
+    //   console.log(response);
+    // }).catch(error=>{
+    //   console.log(error);
+    // })
+    // request({
+    //   url:"process.env.VUE_APP_BASE_API1+ "/"",
+    //   method:'GET'
+    // }).then(response=>{
+    //   console.log(response);
+    // }).catch(error=>{
+    //   console.log(error);
+    // })
+    //
+
+ },
+ methods:{
+  //会员管理
+  getMemberList(){
+    TestApi.getMemberList(this.page,this.size).then(response=>{
+      console.log('member=>',response);
+    }).catch(error=>{
+      console.log(error);
+    })
+
+  },
+  // 供应商管理
+  getSupplierList(){
+    TestApi.getSupplierList(this.page,this.size).then(response=>{
+      console.log('SUPPLIER=>',response);
+    }).catch(error=>{
+      console.log(error);
+    })
+  },
+  // 查看会员
+  findMember(){
+    TestApi.findMember(this.id).then(response=>{
+      console.log('findmember=>',response);
+    }).catch(error=>{
+      console.log(error);
+    })
   }
+
+ }
 }
 </script>
 
